@@ -1,7 +1,7 @@
 #include "kmint/math/vector2d.hpp" // voor window en app
 #include "kmint/ui.hpp"            // voor window en app4
 #include "kmint/play.hpp"          // voor stage
-#include "rectangle_drawable.h"
+#include "rectangle_drawable.hpp"
 
 
 class hello_actor : public kmint::play::free_roaming_actor {

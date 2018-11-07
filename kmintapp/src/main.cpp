@@ -3,7 +3,7 @@
 #include "kmint/math/vector2d.hpp" // voor window en app
 #include "kmint/play.hpp"          // voor stage
 #include "kmint/ui.hpp"            // voor window en app
-#include "hello_actor.h"
+#include "hello_actor.hpp"
 #include "first_map.cpp"
 #include "cow.hpp"
 #include "hare.hpp"

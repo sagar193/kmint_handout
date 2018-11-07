@@ -10,3 +10,4 @@ public:
 private:
 	kmint::play::actor const *actor_;
 };
+
