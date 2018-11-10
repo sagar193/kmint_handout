@@ -25,7 +25,7 @@ int main() {
 
   //  maak een venster aan
   ui::window window{app.create_window({1024, 768}, "hello")};
-
+  
   // maak een podium aan
   play::stage s{};
 
