@@ -1,5 +1,6 @@
 #include "dijkstra.hpp"
 #include <map>
+#include <algorithm>
 
 /*
 struct queItem
@@ -23,36 +24,40 @@ dijkstra::~dijkstra()
 
 
 
-void dijkstra::use(const kmint::graph::basic_node<map_node_info> &firstNode, const kmint::graph::basic_node<map_node_info> &lastNode) 
+void dijkstra::use(const kmint::map::map_node &firstNode, const kmint::map::map_node &lastNode)
 {
-	std::map<const kmint::graph::basic_node<map_node_info>*, kmint::graph::basic_node<map_node_info>> previous;
-	std::map<const kmint::graph::basic_node<map_node_info>*, int> cost;
+	std::map<const kmint::map::map_node*, kmint::map::map_node> previous;
+	std::map<const kmint::map::map_node*, float> cost;
 	
-	std::vector<const kmint::graph::basic_node<map_node_info>*> que;
-	std::vector<const kmint::graph::basic_node<map_node_info>*> visited;
+	std::vector<const kmint::map::map_node*> que;
+	std::vector<const kmint::map::map_node*> visited;
 	
 	cost[&firstNode] = 0;
 	que.push_back(&firstNode);
 
 
 
-	kmint::graph::basic_node<map_node_info> * smallestEdge;
+	const kmint::map::map_node * smallestVertex = nullptr;
 	for (auto i = que.begin();i != que.end(); ++i) {
-		smallestEdge = que[i];
-		if (cost[*i] < cost[smallestEdge]) {
-			
+		if (smallestVertex == nullptr && cost[*i] < cost[smallestVertex]) {
+			smallestVertex = *i;
 		}
 	}
 
+	/*
+	for (std::size_t i = 0; i < smallestVertex->num_edges(); ++i) {
+		if (std::find(visited.begin(), visited.end(), (smallestVertex->operator[](i).to)) != visited.end()) {
 
 
-	for (std::size_t i = 0; i < firstNode.num_edges(); ++i) {
-		que.push_back(firstNode[i].to);
-		auto edge = firstNode[i];
-		cost[edge.to] = edge.weight;
+			que.push_back(smallestVertex->operator[](i).to);
+			auto edge = smallestVertex->operator[](i);
+			if (cost[edge.to] > (cost[smallestVertex] + edge.weight)) {
+				cost[edge.to] = cost[smallestVertex] += edge.weight;
+			}
+		}
 	}
-	visited.push_back(firstNode);
-
+	//visited.push_back(firstNode);
+	*/
 	
 
 }

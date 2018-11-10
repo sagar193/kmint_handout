@@ -19,7 +19,7 @@ class dijkstra
 public:
 	dijkstra();
 	~dijkstra();
-	void use(const kmint::graph::basic_node<map_node_info> &firstNode, const kmint::graph::basic_node<map_node_info> &lastNode);
+	void use(const kmint::map::map_node &firstNode, const kmint::map::map_node &lastNode);
 private:
 
 };
