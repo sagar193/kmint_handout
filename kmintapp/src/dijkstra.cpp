@@ -2,19 +2,6 @@
 #include <map>
 #include <algorithm>
 
-/*
-struct queItem
-{
-	queItem() = default;
-	queItem(kmint::graph::basic_node < map_node_info > node, int cost) 
-	{
-		this->cost = cost;
-		this->node = node;
-	};
-	kmint::graph::basic_node < map_node_info > node;
-	int cost;
-};*/
-
 dijkstra::dijkstra()
 = default;
 
@@ -24,7 +11,7 @@ dijkstra::~dijkstra()
 
 
 
-void dijkstra::use(const kmint::map::map_node &firstNode, const kmint::map::map_node &lastNode)
+void dijkstra::FindShortestPath(const kmint::map::map_node &startNode, const kmint::map::map_node &endNode)
 {
 	std::map<const kmint::map::map_node*, kmint::map::map_node> previous;
 	std::map<const kmint::map::map_node*, float> cost;
@@ -32,32 +19,42 @@ void dijkstra::use(const kmint::map::map_node &firstNode, const kmint::map::map_
 	std::vector<const kmint::map::map_node*> que;
 	std::vector<const kmint::map::map_node*> visited;
 	
-	cost[&firstNode] = 0;
-	que.push_back(&firstNode);
+	cost[&startNode] = 0;
+	que.push_back(&startNode);
 
+	bool found = false;
 
+	//while(que.size()>0 && !found){
 
 	const kmint::map::map_node * smallestVertex = nullptr;
 	for (auto i = que.begin();i != que.end(); ++i) {
 		if (smallestVertex == nullptr && cost[*i] < cost[smallestVertex]) {
-			smallestVertex = *i;
+			smallestVertex = (*i);
 		}
 	}
 
-	/*
 	for (std::size_t i = 0; i < smallestVertex->num_edges(); ++i) {
-		if (std::find(visited.begin(), visited.end(), (smallestVertex->operator[](i).to)) != visited.end()) {
+		auto edge = (*smallestVertex)[i];
+		auto toVertex = &edge.to();
+		bool notInVisited = std::find(visited.begin(), visited.end(), toVertex) != visited.end();
+		bool notInQue = std::find(que.begin(), que.end(), toVertex) != que.end();
+		
+		//TODO add A* weight
 
-
-			que.push_back(smallestVertex->operator[](i).to);
-			auto edge = smallestVertex->operator[](i);
-			if (cost[edge.to] > (cost[smallestVertex] + edge.weight)) {
-				cost[edge.to] = cost[smallestVertex] += edge.weight;
-			}
+		if (notInVisited && notInQue) {
+			que.push_back(toVertex);
 		}
-	}
-	//visited.push_back(firstNode);
-	*/
-	
+		if (cost.find(toVertex) != cost.end() || cost[toVertex] > cost[smallestVertex] + edge.weight()) {
+			cost[toVertex] = cost[smallestVertex] + edge.weight();
+		}
+		if (toVertex == &endNode) {
+			found = true;
+			break;
+		}
 
+	}
+
+	visited.push_back(smallestVertex);
+
+	// TODO tagvisited nodes
 }
