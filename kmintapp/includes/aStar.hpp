@@ -5,11 +5,11 @@
 #include "kmint/map/map.hpp"
 #include "kmint/math/size.hpp"
 
-class dijkstra
+class aStar
 {
 public:
-	dijkstra();
-	~dijkstra();
+	aStar();
+	~aStar();
 	void FindShortestPath(const kmint::map::map_node &firstNode, const kmint::map::map_node &lastNode);
 private:
 

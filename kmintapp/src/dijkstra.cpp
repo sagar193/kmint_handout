@@ -61,7 +61,6 @@ void dijkstra::FindShortestPath(const kmint::map::map_node &startNode, const kmi
 			}
 
 		}
-		smallestVertex.tagged(true);
 		que.erase(que.begin()+it);
 		visited.push_back(smallestVertex);
 	}

@@ -18,6 +18,7 @@ add_executable(kmintapp
   src/rectangle_drawable.cpp
   src/first_map.cpp
   src/dijkstra.cpp
+  src/aStar.cpp
   )
 
 target_compile_features(kmintapp PUBLIC cxx_std_17)

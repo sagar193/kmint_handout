@@ -8,6 +8,7 @@
 #include "cow.hpp"
 #include "hare.hpp"
 #include "dijkstra.hpp"
+#include "aStar.hpp"
 
 using namespace kmint; // alles van libkmint bevindt zich in deze namespace
 
@@ -27,6 +28,12 @@ const kmint::map::map_node &find_hare_node(const kmint::map::map_graph &graph) {
 		}
 	}
 	throw "could not find starting point";
+}
+
+void markUneven(kmint::map::map_graph &graph) {
+	for (std::size_t i = 0; i < graph.num_nodes(); ++i) {
+		graph[i].tagged(i % 2 == 0);
+	}
 }
 
 int main() {
@@ -59,8 +66,10 @@ int main() {
   auto &my_hare = s.build_actor<hare>(m.graph());
   my_hare.set_cow(my_cow);
   auto &hare_node = find_hare_node(m.graph());
+
   dijkstra dijkstr;
   dijkstr.FindShortestPath(cow_node, hare_node);
+  markUneven(m.graph());
 
   // Maak een event_source aan (hieruit kun je alle events halen, zoals
   // toetsaanslagen)
