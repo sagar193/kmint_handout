@@ -11,7 +11,7 @@ dijkstra::~dijkstra()
 
 
 
-void dijkstra::FindShortestPath(const kmint::map::map_node &startNode, const kmint::map::map_node &endNode)
+std::vector<const kmint::map::map_node*> dijkstra::FindShortestPath(const kmint::map::map_node &startNode, const kmint::map::map_node &endNode)
 {
 	std::map<const kmint::map::map_node*, const kmint::map::map_node*> previous;
 	std::map<const kmint::map::map_node*, float> cost;
@@ -66,4 +66,5 @@ void dijkstra::FindShortestPath(const kmint::map::map_node &startNode, const kmi
 	}
 
 	// TODO tagvisited nodes
+	return visited;
 }

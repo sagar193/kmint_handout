@@ -36,6 +36,12 @@ void markUneven(kmint::map::map_graph &graph) {
 	}
 }
 
+void markWithList(kmint::map::map_graph & graph, std::vector<const kmint::map::map_node*> list) {
+	for (auto node : list) {
+		graph[node->node_id()].tagged(true);
+	}
+}
+
 int main() {
   // een app object is nodig om
   ui::app app{};
@@ -68,8 +74,9 @@ int main() {
   auto &hare_node = find_hare_node(m.graph());
 
   dijkstra dijkstr;
-  dijkstr.FindShortestPath(cow_node, hare_node);
-  markUneven(m.graph());
+  auto dijkstraVisitedNodes = dijkstr.FindShortestPath(cow_node, hare_node);
+  //markUneven(m.graph());
+  markWithList(m.graph(), dijkstraVisitedNodes);
 
   // Maak een event_source aan (hieruit kun je alle events halen, zoals
   // toetsaanslagen)
