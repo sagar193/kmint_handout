@@ -23,7 +23,7 @@ std::vector<const kmint::map::map_node*> dijkstra::FindShortestPath(const kmint:
 	que.push_back(&startNode);
 
 	bool found = false;
-
+	//
 	while (que.size() > 0 && !found) {
 		int it = 0;
 		const kmint::map::map_node * smallestVertex = nullptr;

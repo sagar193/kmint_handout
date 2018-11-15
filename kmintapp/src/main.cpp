@@ -71,7 +71,7 @@ int main() {
   s.build_actor<cow>(m.graph(), cow_node);
   auto &my_hare = s.build_actor<hare>(m.graph());
   my_hare.set_cow(my_cow);
-  auto &hare_node = find_hare_node(m.graph());
+  auto &hare_node = my_hare.node();
 
   dijkstra dijkstr;
   auto dijkstraVisitedNodes = dijkstr.FindShortestPath(cow_node, hare_node);
