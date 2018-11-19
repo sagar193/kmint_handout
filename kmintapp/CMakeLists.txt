@@ -19,6 +19,7 @@ add_executable(kmintapp
   src/first_map.cpp
   src/dijkstra.cpp
   src/aStar.cpp
+  src/cowTestState.cpp
   )
 
 target_compile_features(kmintapp PUBLIC cxx_std_17)

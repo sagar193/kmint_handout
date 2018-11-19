@@ -4,6 +4,8 @@
 #include "kmint/map/map.hpp"
 #include "kmint/play.hpp"
 #include "kmint/primitives.hpp"
+#include "cowState.hpp"
+//#include "cowTestState.hpp"
 
 class cow : public kmint::play::map_bound_actor {
 public:
@@ -23,6 +25,8 @@ private:
 	kmint::play::image_drawable drawable_;
 	// edge_type const *next_edge_{nullptr};
 	// edge_type const *pick_next_edge();
+
+	cowState * currentState;
 };
 
 #endif /* KMINTAPP_COW_HPP */
