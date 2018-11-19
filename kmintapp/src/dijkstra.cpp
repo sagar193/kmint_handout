@@ -11,7 +11,7 @@ dijkstra::~dijkstra()
 
 
 
-void dijkstra::FindShortestPath(const kmint::map::map_node &startNode, const kmint::map::map_node &endNode)
+std::vector<const kmint::map::map_node*> dijkstra::FindShortestPath(const kmint::map::map_node &startNode, const kmint::map::map_node &endNode)
 {
 	std::map<const kmint::map::map_node*, const kmint::map::map_node*> previous;
 	std::map<const kmint::map::map_node*, float> cost;
@@ -23,7 +23,7 @@ void dijkstra::FindShortestPath(const kmint::map::map_node &startNode, const kmi
 	que.push_back(&startNode);
 
 	bool found = false;
-
+	//
 	while (que.size() > 0 && !found) {
 		int it = 0;
 		const kmint::map::map_node * smallestVertex = nullptr;
@@ -56,6 +56,8 @@ void dijkstra::FindShortestPath(const kmint::map::map_node &startNode, const kmi
 				previous[toVertex] = smallestVertex;
 			}
 			if (toVertex == &endNode) {
+				cost[toVertex] = cost[smallestVertex] + edge.weight();
+				previous[toVertex] = smallestVertex;
 				found = true;
 				break;
 			}
@@ -66,4 +68,12 @@ void dijkstra::FindShortestPath(const kmint::map::map_node &startNode, const kmi
 	}
 
 	// TODO tagvisited nodes
+
+	auto lastNode = previous[&endNode];
+	std::vector<const kmint::map::map_node*> path;
+	while (lastNode != &startNode) {
+		path.insert(path.begin(), lastNode);
+		lastNode = previous[lastNode];
+	}
+	return path;
 }

@@ -10,7 +10,7 @@ class dijkstra
 public:
 	dijkstra();
 	~dijkstra();
-	void FindShortestPath(const kmint::map::map_node &firstNode, const kmint::map::map_node &lastNode);
+	std::vector<const kmint::map::map_node*> FindShortestPath(const kmint::map::map_node &firstNode, const kmint::map::map_node &lastNode);
 private:
 
 };
