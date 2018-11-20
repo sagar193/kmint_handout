@@ -77,5 +77,5 @@ std::vector<const kmint::map::map_node*> aStar::FindShortestPath(const kmint::ma
 float aStar::calculateDistance(const kmint::map::map_node &firstNode, const kmint::map::map_node &secondNode) {
 	float distance = sqrt(pow(firstNode.location().x() - secondNode.location().x(), 2) + pow(firstNode.location().y() - secondNode.location().y(), 2));
 
-	return distance;
+	return distance /32;
 }
