@@ -7,8 +7,6 @@
 #include "first_map.cpp"
 #include "cow.hpp"
 #include "hare.hpp"
-#include "dijkstra.hpp"
-#include "aStar.hpp"
 
 using namespace kmint; // alles van libkmint bevindt zich in deze namespace
 
@@ -69,14 +67,15 @@ int main() {
   auto &cow_node = find_cow_node(m.graph());
   auto &my_cow = s.build_actor<cow>(m.graph(), cow_node);
   s.build_actor<cow>(m.graph(), cow_node);
+
   auto &my_hare = s.build_actor<hare>(m.graph());
   my_hare.set_cow(my_cow);
   auto &hare_node = my_hare.node();
 
-  aStar dijkstr;
-  auto dijkstraVisitedNodes = dijkstr.FindShortestPath(cow_node, hare_node);
+  my_cow.setPathTo(my_hare);
+
   //markUneven(m.graph());
-  markWithList(m.graph(), dijkstraVisitedNodes);
+  markWithList(m.graph(), my_cow.get_path());
 
   // Maak een event_source aan (hieruit kun je alle events halen, zoals
   // toetsaanslagen)

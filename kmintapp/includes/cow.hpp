@@ -15,6 +15,9 @@ public:
 	bool incorporeal() const override { return false; }
 	// geeft de radius van deze actor mee. Belangrijk voor collision detection
 	kmint::scalar radius() const override { return 16.0; }
+	
+	void setPathTo(const kmint::play::map_bound_actor &goalActor);
+	const std::vector<const kmint::map::map_node*> get_path() const;
 
 private:
 	// hoeveel tijd is verstreken sinds de laatste beweging
@@ -23,6 +26,8 @@ private:
 	kmint::play::image_drawable drawable_;
 	// edge_type const *next_edge_{nullptr};
 	// edge_type const *pick_next_edge();
+
+	std::vector<const kmint::map::map_node*> path;
 };
 
 #endif /* KMINTAPP_COW_HPP */
