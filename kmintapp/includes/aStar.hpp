@@ -10,7 +10,7 @@ class aStar
 public:
 	aStar();
 	~aStar();
-	void FindShortestPath(const kmint::map::map_node &firstNode, const kmint::map::map_node &lastNode);
+	std::vector<const kmint::map::map_node*> FindShortestPath(const kmint::map::map_node &firstNode, const kmint::map::map_node &lastNode);
 private:
-
+	float calculateDistance(const kmint::map::map_node &firstNode, const kmint::map::map_node &secondNode);
 };

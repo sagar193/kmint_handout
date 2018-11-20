@@ -73,7 +73,7 @@ int main() {
   my_hare.set_cow(my_cow);
   auto &hare_node = my_hare.node();
 
-  dijkstra dijkstr;
+  aStar dijkstr;
   auto dijkstraVisitedNodes = dijkstr.FindShortestPath(cow_node, hare_node);
   //markUneven(m.graph());
   markWithList(m.graph(), dijkstraVisitedNodes);
