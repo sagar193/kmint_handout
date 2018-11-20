@@ -12,11 +12,13 @@ std::vector<const kmint::map::map_node*> aStar::FindShortestPath(const kmint::ma
 {
 	std::map<const kmint::map::map_node*, const kmint::map::map_node*> previous;
 	std::map<const kmint::map::map_node*, float> cost;
+	std::map<const kmint::map::map_node*, float> heuristicCost;
 
 	std::vector<const kmint::map::map_node*> que;
 	std::vector<const kmint::map::map_node*> visited;
 
-	cost[&startNode] = 0 + calculateDistance(startNode, endNode);
+	cost[&startNode] = 0;
+	heuristicCost[&startNode] = calculateDistance(startNode, endNode);
 	que.push_back(&startNode);
 
 	bool found = false;
@@ -25,7 +27,7 @@ std::vector<const kmint::map::map_node*> aStar::FindShortestPath(const kmint::ma
 		int it = 0;
 		const kmint::map::map_node * smallestVertex = nullptr;
 		for (int i = 0; i < que.size(); i++) {
-			if (smallestVertex == nullptr || cost[que[i]] < cost[smallestVertex]) {
+			if (smallestVertex == nullptr || cost[que[i]]+heuristicCost[que[i]] < cost[smallestVertex] + heuristicCost[smallestVertex]) {
 				smallestVertex = que[i];
 				it = i;
 			}
@@ -43,11 +45,13 @@ std::vector<const kmint::map::map_node*> aStar::FindShortestPath(const kmint::ma
 				que.push_back(toVertex);
 			}
 			if (cost.find(toVertex) == cost.end() || cost[toVertex] > cost[smallestVertex] + edge.weight()) {
-				cost[toVertex] = cost[smallestVertex] + edge.weight() + calculateDistance(*smallestVertex, endNode);
+				cost[toVertex] = cost[smallestVertex] + edge.weight();
+				heuristicCost[toVertex] = calculateDistance(*smallestVertex, endNode);
 				previous[toVertex] = smallestVertex;
 			}
 			if (toVertex == &endNode) {
-				cost[toVertex] = cost[smallestVertex] + edge.weight() + calculateDistance(*smallestVertex, endNode);
+				cost[toVertex] = cost[smallestVertex] + edge.weight();
+				heuristicCost[toVertex] = calculateDistance(*smallestVertex, endNode);
 				previous[toVertex] = smallestVertex;
 				found = true;
 				break;
