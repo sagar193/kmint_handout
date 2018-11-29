@@ -5,10 +5,21 @@
 #include "kmint/play.hpp"
 #include "kmint/primitives.hpp"
 #include "cowState.hpp"
-//#include "cowTestState.hpp"
+#include "cowTestState.hpp"
+#include <map>
+#include <memory>
+#include "states/State.hpp"
+#include "states/WanderState.hpp"
 
 class cow : public kmint::play::map_bound_actor {
 public:
+
+	enum STATE_NAMES {
+		WANDER_STATE,
+		ATTACK_STATE,
+		FIND_PILL_STATE
+	};
+
 	cow(kmint::map::map_graph const &g, kmint::map::map_node const &initial_node);
 	// wordt elke game tick aangeroepen
 	void act(kmint::delta_time dt) override;
@@ -17,8 +28,9 @@ public:
 	bool incorporeal() const override { return false; }
 	// geeft de radius van deze actor mee. Belangrijk voor collision detection
 	kmint::scalar radius() const override { return 16.0; }
-
+	void SetState(STATE_NAMES state);
 private:
+
 	// hoeveel tijd is verstreken sinds de laatste beweging
 	kmint::delta_time t_passed_{};
 	// weet hoe de koe getekend moet worden
@@ -26,7 +38,13 @@ private:
 	// edge_type const *next_edge_{nullptr};
 	// edge_type const *pick_next_edge();
 
-	cowState * currentState;
+	void RegisterStates();
+
+
+	State* currentState;
+	std::map<STATE_NAMES, std::unique_ptr<State>> States;
+
+
 };
 
 #endif /* KMINTAPP_COW_HPP */
