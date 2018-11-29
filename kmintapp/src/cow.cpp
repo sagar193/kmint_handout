@@ -3,7 +3,8 @@
 #include "aStar.hpp"
 #include "dijkstra.hpp"
 
-#include "states/WanderState.hpp"
+#include "states/cow/CowWanderState.hpp"
+
 using namespace kmint;
 static const char *cow_image = "resources/cow.png";
 cow::cow(map::map_graph const &g, map::map_node const &initial_node)
@@ -37,7 +38,7 @@ const std::vector<const kmint::map::map_node*> cow::get_path() const {
 }
 
 void cow::RegisterStates() {
-	States[cow::STATE_NAMES::WANDER_STATE] = std::make_unique<WanderState>(*this);
+	States[cow::STATE_NAMES::WANDER_STATE] = std::make_unique<CowWanderState>(*this);
 	States[cow::STATE_NAMES::ATTACK_STATE] = std::make_unique<cowTestState>(*this);
 }
 

@@ -9,7 +9,7 @@
 #include <map>
 #include <memory>
 #include "states/State.hpp"
-#include "states/WanderState.hpp"
+#include "states/cow/CowWanderState.hpp"
 
 class cow : public kmint::play::map_bound_actor {
 public:
@@ -42,13 +42,8 @@ private:
 	// edge_type const *pick_next_edge();
 
 	void RegisterStates();
-
-
 	State* currentState;
 	std::map<STATE_NAMES, std::unique_ptr<State>> States;
-
-
-
 	std::vector<const kmint::map::map_node*> path;
 };
 
