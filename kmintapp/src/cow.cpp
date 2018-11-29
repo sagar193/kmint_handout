@@ -1,5 +1,8 @@
 #include "cow.hpp"
 #include "kmint/random.hpp"
+#include "aStar.hpp"
+#include "dijkstra.hpp"
+
 #include "states/WanderState.hpp"
 using namespace kmint;
 static const char *cow_image = "resources/cow.png";
@@ -22,6 +25,15 @@ void cow::act(delta_time dt) {
 	//	t_passed_ = from_seconds(0);
 	//}
 
+}
+
+void cow::setPathTo(const kmint::play::map_bound_actor &goalActor) {
+	aStar astar;
+	path = astar.FindShortestPath(this->node(), goalActor.node());
+}
+
+const std::vector<const kmint::map::map_node*> cow::get_path() const {
+	return this->path;
 }
 
 void cow::RegisterStates() {

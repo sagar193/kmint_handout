@@ -14,7 +14,7 @@ cowTestState::cowTestState(cow &cow) : _cow(cow){
 
 void cowTestState::act(/*cow &cow,*/ kmint::delta_time dt) {
 	t_passed_ += dt;
-	_cow.SetState(cow::STATE_NAMES::WANDER_STATE);
+	//_cow.SetState(cow::STATE_NAMES::WANDER_STATE);
 	if (to_seconds(t_passed_) >= 1) {
 		// pick random edge
 		int next_index = random_int(0, _cow.node().num_edges());
