@@ -39,7 +39,6 @@ const std::vector<const kmint::map::map_node*> cow::get_path() const {
 
 void cow::RegisterStates() {
 	States[cow::STATE_NAMES::WANDER_STATE] = std::make_unique<CowWanderState>(*this);
-	States[cow::STATE_NAMES::ATTACK_STATE] = std::make_unique<cowTestState>(*this);
 }
 
 void cow::SetState(cow::STATE_NAMES state) {

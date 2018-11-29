@@ -1,13 +1,14 @@
 #pragma once
 
-#include "../State.hpp"
-#include "cow.hpp"
+#include "states/State.hpp"
 
+class cow;
 class CowWanderState : public State
 {
 public:
 	CowWanderState() = default;
 	CowWanderState(cow& cow);
+
 	~CowWanderState() = default;
 	void act(kmint::delta_time dt) override;
 private:

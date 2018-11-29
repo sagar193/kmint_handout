@@ -4,6 +4,7 @@
 #include "kmint/random.hpp"
 #include "kmint/map/map.hpp"
 #include "kmint/play.hpp"
+#include "cow.hpp"
 
 using namespace kmint;
 

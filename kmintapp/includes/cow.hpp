@@ -4,12 +4,9 @@
 #include "kmint/map/map.hpp"
 #include "kmint/play.hpp"
 #include "kmint/primitives.hpp"
-#include "cowState.hpp"
-#include "cowTestState.hpp"
 #include <map>
 #include <memory>
 #include "states/State.hpp"
-#include "states/cow/CowWanderState.hpp"
 
 class cow : public kmint::play::map_bound_actor {
 public:
