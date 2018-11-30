@@ -20,7 +20,7 @@ map::map_node const &random_gun_node(map::map_graph const &graph) {
 
 gun::gun(map::map_graph const &g)
 	: play::map_bound_actor{ g, random_gun_node(g) },
-	drawable_{ *this, kmint::graphics::image{gun_image, 0.05} } {}
+	drawable_{ *this, kmint::graphics::image{gun_image, 0.07} } {}
 
 void gun::act(delta_time dt) {
 	t_passed_ += dt;

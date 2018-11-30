@@ -8,6 +8,7 @@
 #include "cow.hpp"
 #include "hare.hpp"
 #include "gun.hpp"
+#include "pill.hpp"
 #include "dijkstra.hpp"
 using namespace kmint; // alles van libkmint bevindt zich in deze namespace
 
@@ -68,6 +69,7 @@ int main() {
 	auto &my_cow = s.build_actor<cow>(m.graph(), cow_node);
 	auto &my_hare = s.build_actor<hare>(m.graph());
 	auto &my_gun = s.build_actor<gun>(m.graph());
+	auto &my_pill = s.build_actor<pill>(m.graph());
 	my_hare.set_cow(my_cow);
 
 	auto &hare_node = my_hare.node();
