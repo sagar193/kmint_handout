@@ -1,6 +1,7 @@
 #include "hare.hpp"
 #include "cow.hpp"
 #include "kmint/random.hpp"
+#include "States/hare/HareWanderState.hpp"
 
 using namespace kmint;
 
@@ -21,13 +22,25 @@ map::map_node const &random_hare_node(map::map_graph const &graph) {
 
 hare::hare(map::map_graph const &g)
 	: play::map_bound_actor{ g, random_hare_node(g) },
-	drawable_{ *this, kmint::graphics::image{hare_image, 1} } {}
+	drawable_{ *this, kmint::graphics::image{hare_image, 1} } {
+	RegisterStates();
+	currentState = States[hare::STATE_NAMES::WANDER_STATE].get();
+}
 
 void hare::act(kmint::delta_time dt) {
-	for (std::size_t i = 0; i < num_colliding_actors(); ++i) {
+	currentState->act(dt);
+	/*for (std::size_t i = 0; i < num_colliding_actors(); ++i) {
 		auto &a = colliding_actor(i);
 		if (&a == cow_) {
 			node(random_hare_node(graph()));
 		}
-	}
+	}*/
+}
+
+void hare::RegisterStates() {
+	States[hare::STATE_NAMES::WANDER_STATE] = std::make_unique<HareWanderState>(*this);
+}
+
+void hare::SetState(hare::STATE_NAMES state) {
+	currentState = States[state].get();
 }
