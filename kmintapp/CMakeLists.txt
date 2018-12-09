@@ -15,6 +15,8 @@ add_executable(kmintapp
   src/main.cpp
   src/hare.cpp
   src/cow.cpp
+  src/gun.cpp
+  src/pill.cpp
   src/rectangle_drawable.cpp
   src/first_map.cpp
   src/dijkstra.cpp
